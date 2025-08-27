@@ -35,7 +35,11 @@ def convert_notion_to_markdown(page_data, blocks_data):
     
     # 轉換內容塊
     for block in blocks_data["results"]:
-        markdown_content += convert_block_to_markdown(block)
+        block_markdown = convert_block_to_markdown(block)
+        markdown_content += block_markdown
+    
+    # 處理圖片上傳
+    markdown_content = process_images_in_markdown(markdown_content)
     
     return {"title": title, "content": markdown_content, "tags": []}
 
@@ -81,6 +85,24 @@ def convert_block_to_markdown(block):
     elif block_type == "divider":
         markdown = "---\n\n"
     
+    elif block_type == "image":
+        image_data = block["image"]
+        image_url = ""
+        alt_text = ""
+        
+        # 處理不同類型的圖片來源
+        if image_data["type"] == "external":
+            image_url = image_data["external"]["url"]
+        elif image_data["type"] == "file":
+            image_url = image_data["file"]["url"]
+        
+        # 獲取圖片說明文字
+        if image_data.get("caption"):
+            alt_text = extract_rich_text(image_data["caption"])
+        
+        # 標記圖片需要上傳到 Medium
+        markdown = f"![{alt_text}]({image_url})\n\n"
+    
     return markdown
 
 
@@ -113,6 +135,32 @@ def extract_rich_text(rich_text_array):
     return text
 
 
+def process_images_in_markdown(markdown_content: str) -> str:
+    """處理 markdown 中的圖片，上傳到 Medium 並替換 URL"""
+    import re
+    
+    # 找出所有圖片連結的正規表達式
+    image_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
+    
+    def replace_image(match):
+        alt_text = match.group(1)
+        original_url = match.group(2)
+        
+        # 檢查是否為外部 URL（需要上傳到 Medium）
+        if original_url.startswith(('http://', 'https://')):
+            print(f"處理圖片: {alt_text or 'untitled'}")
+            medium_url = upload_image_to_medium(original_url)
+            return f'![{alt_text}]({medium_url})'
+        else:
+            # 如果不是外部 URL，保持原樣
+            return match.group(0)
+    
+    # 替換所有圖片
+    processed_content = re.sub(image_pattern, replace_image, markdown_content)
+    
+    return processed_content
+
+
 def create_post(title: str, content: str, tags):
     medium_token = os.getenv('MEDIUM_TOKEN')
     medium_user_id = os.getenv('MEDIUM_USER_ID')
@@ -142,41 +190,60 @@ def create_post(title: str, content: str, tags):
     
     print(result.json())
 
-def upload_image(title, file):
+def upload_image_to_medium(image_url: str) -> str:
+    """從 URL 下載圖片並上傳到 Medium，回傳 Medium 圖片 URL"""
     medium_token = os.getenv('MEDIUM_TOKEN')
     if not medium_token:
         raise ValueError("請設定 MEDIUM_TOKEN 環境變數")
     
-    print(title +"/"+ file)
-    data = "--FormBoundaryXYZ\r\n"
-    data += "Content-Disposition: form-data; name=\"image\"; filename=\"" + file + "\"\r\n"
-    data += "Content-Type: image/" + file[-3:0] + "\r\n\r\n"
-
-    with open(title + "/" + file, "rb") as image:
-        f = image.read()
-        b = bytearray(f)
-        data += "".join(map(chr, b)) + "\r\n"
-        data += str(b) + "\r\n"
-    data += "--FormBoundaryXYZ--\r\n"
-    print(data)
-    result = requests.post(
+    try:
+        # 下載圖片
+        print(f"正在下載圖片: {image_url}")
+        image_response = requests.get(image_url)
+        
+        if image_response.status_code != 200:
+            print(f"無法下載圖片: {image_url}")
+            return image_url  # 回傳原始 URL
+        
+        # 取得檔名和副檔名
+        import urllib.parse
+        from pathlib import Path
+        
+        parsed_url = urllib.parse.urlparse(image_url)
+        filename = Path(parsed_url.path).name
+        if not filename or '.' not in filename:
+            filename = "image.png"  # 預設檔名
+        
+        # 準備 multipart/form-data
+        files = {
+            'image': (filename, image_response.content, f'image/{filename.split(".")[-1]}')
+        }
+        
+        headers = {
+            "Accept": "application/json",
+            "Authorization": f"Bearer {medium_token}"
+        }
+        
+        print(f"正在上傳圖片到 Medium: {filename}")
+        result = requests.post(
             "https://api.medium.com/v1/images",
-                data = """
-                --FormBoundaryXYZ
-                Content-Disposition: form-data; name="image"; filename="filename.png"
-                Content-Type: image/png
-
-                IMAGE_DATA
-                --FormBoundaryXYZ--""",
-                headers = {
-                    "Content-type": "multipart/form-data; boundary=FormBoundaryXYZ",
-                    "Accept": "application/json",
-                    "Accept-Charset": "utf-8",
-                    "Authorization": f"Bearer {medium_token}"
-                }
-            )
-    
-    print(result.json())
+            files=files,
+            headers=headers
+        )
+        
+        if result.status_code == 201:
+            response_data = result.json()
+            medium_url = response_data.get("data", {}).get("url", "")
+            if medium_url:
+                print(f"圖片上傳成功: {medium_url}")
+                return medium_url
+        
+        print(f"圖片上傳失敗: {result.status_code}, {result.text}")
+        return image_url  # 回傳原始 URL
+        
+    except Exception as e:
+        print(f"圖片處理錯誤: {e}")
+        return image_url  # 回傳原始 URL
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
