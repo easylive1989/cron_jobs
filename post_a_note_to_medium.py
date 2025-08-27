@@ -2,39 +2,116 @@ import sys
 import requests
 import json
 import os
+from notion_api import NotionApi
 
 
-language_map = {
-    "dart": "dart",
-    "bash": "sh",
-    "html": "html",
-    "json": "json",
-    "yaml": "yaml",
-    "": "txt",
-}
-
-def create_secret_gist(title: str, file_map: dict):
-    github_token = os.getenv('GITHUB_TOKEN')
-    if not github_token:
-        raise ValueError("請設定 GITHUB_TOKEN 環境變數")
+def get_notion_page_content(page_id: str):
+    """從 Notion 獲取頁面內容並轉換為 markdown 格式"""
+    notion_token = os.getenv('NOTION_TOKEN')
+    if not notion_token:
+        raise ValueError("請設定 NOTION_TOKEN 環境變數")
     
-    result = requests.post(
-            f"https://api.github.com/gists",
-                data = json.dumps({
-                  "description": title,
-                  "public": False,
-                  "files": file_map,
-                }),
-                headers = {
-                    "Accept": "application/vnd.github.v3+json",
-                    "Content-type": "application/json",
-                    "Authorization": f"Bearer {github_token}"
-                }
-            ).json()
+    notion_api = NotionApi(notion_token)
+    content = notion_api.get_page_content(page_id)
     
-    if "id" in result:
-        return result["id"]
-    print(result)
+    return convert_notion_to_markdown(content["page"], content["blocks"])
+
+
+def convert_notion_to_markdown(page_data, blocks_data):
+    """將 Notion 內容轉換為 markdown 格式"""
+    markdown_content = ""
+    
+    # 獲取標題
+    title = ""
+    if "properties" in page_data:
+        for prop_name, prop_data in page_data["properties"].items():
+            if prop_data["type"] == "title" and prop_data["title"]:
+                title = "".join([text["plain_text"] for text in prop_data["title"]])
+                break
+    
+    # 如果有標題，加入 markdown
+    if title:
+        markdown_content += f"# {title}\n\n"
+    
+    # 轉換內容塊
+    for block in blocks_data["results"]:
+        markdown_content += convert_block_to_markdown(block)
+    
+    return {"title": title, "content": markdown_content, "tags": []}
+
+
+def convert_block_to_markdown(block):
+    """將單個 Notion 塊轉換為 markdown"""
+    block_type = block["type"]
+    markdown = ""
+    
+    if block_type == "paragraph":
+        text = extract_rich_text(block["paragraph"]["rich_text"])
+        markdown = f"{text}\n\n"
+    
+    elif block_type == "heading_1":
+        text = extract_rich_text(block["heading_1"]["rich_text"])
+        markdown = f"# {text}\n\n"
+    
+    elif block_type == "heading_2":
+        text = extract_rich_text(block["heading_2"]["rich_text"])
+        markdown = f"## {text}\n\n"
+    
+    elif block_type == "heading_3":
+        text = extract_rich_text(block["heading_3"]["rich_text"])
+        markdown = f"### {text}\n\n"
+    
+    elif block_type == "bulleted_list_item":
+        text = extract_rich_text(block["bulleted_list_item"]["rich_text"])
+        markdown = f"- {text}\n"
+    
+    elif block_type == "numbered_list_item":
+        text = extract_rich_text(block["numbered_list_item"]["rich_text"])
+        markdown = f"1. {text}\n"
+    
+    elif block_type == "quote":
+        text = extract_rich_text(block["quote"]["rich_text"])
+        markdown = f"> {text}\n\n"
+    
+    elif block_type == "code":
+        language = block["code"]["language"] or ""
+        text = extract_rich_text(block["code"]["rich_text"])
+        markdown = f"```{language}\n{text}\n```\n\n"
+    
+    elif block_type == "divider":
+        markdown = "---\n\n"
+    
+    return markdown
+
+
+def extract_rich_text(rich_text_array):
+    """從 Notion rich text 陣列中提取純文字"""
+    if not rich_text_array:
+        return ""
+    
+    text = ""
+    for text_obj in rich_text_array:
+        plain_text = text_obj.get("plain_text", "")
+        
+        # 處理格式化
+        annotations = text_obj.get("annotations", {})
+        if annotations.get("bold"):
+            plain_text = f"**{plain_text}**"
+        if annotations.get("italic"):
+            plain_text = f"*{plain_text}*"
+        if annotations.get("code"):
+            plain_text = f"`{plain_text}`"
+        if annotations.get("strikethrough"):
+            plain_text = f"~~{plain_text}~~"
+        
+        # 處理連結
+        if text_obj.get("href"):
+            plain_text = f"[{plain_text}]({text_obj['href']})"
+        
+        text += plain_text
+    
+    return text
+
 
 def create_post(title: str, content: str, tags):
     medium_token = os.getenv('MEDIUM_TOKEN')
@@ -101,99 +178,28 @@ def upload_image(title, file):
     
     print(result.json())
 
-class PostParser:
-    def __init__(self):
-        self.code_snippet_map = {}
-        self.image_map = []
-        self.result_post = ""
-        self.tags = []
-        self.title = ""
-        self.skip_keywords = ["功能分類", "新增時間", "最後編輯時間", "!["]
-        self.stateMap = {
-            "code_parsing": self.parse_code,
-            "text_parsing": self.parse_text,
-        }
-    
-    def parse(self, file):
-        self.state = "text_parsing"
-        while True:
-            curline = file.readline()
-            if not curline :
-                break
-
-            if curline.split(":")[0] in self.skip_keywords:
-                continue
-
-            self.result_post += self.stateMap[self.state](curline)
-        
-        self.result_post
-
-    def parse_text(self, line) -> str:
-        if (self.title == ""):
-            self.title = line[2:].strip("\n")
-            return line
-
-        #if line.startswith("```") and self.state != "code_parsing":
-        #    self.state = "code_parsing"
-        #    self.code_snippet_map[self.get_code_snippet_name(line)] = {
-        #        "content": ""
-        #    }
-        #    return ""
-
-        # if line.startswith("!["):
-        #     image_file_name = line[2:line.index("]")]
-        #     print(image_file_name)
-        #     self.image_map.append(image_file_name)
-        #     return image_file_name
-
-        if line.startswith("標籤:"):
-            self.tags = line[3:].strip(" \n").split(",")
-            return ""
-        return line
-
-    def parse_code(self, line) -> str:
-        self.code_string = ""
-        
-        last_code_snippet_name = sorted(list(self.code_snippet_map.keys()))[-1]
-        if line.startswith("```"):
-            self.state = "text_parsing"
-            return last_code_snippet_name + "\n"
-        else:
-            self.code_snippet_map[last_code_snippet_name]["content"] += line
-            return ""
-
-    def get_code_snippet_name(self, line):
-        return "code_" + '{0:02d}'.format(len(self.code_snippet_map)) + "." + language_map[line.rstrip("\n")[3:]]
-
 if __name__ == '__main__':
-    input_filename = sys.argv[1]
-    # input_filename="Medium/畫面莫名其妙地重\ build\ 了\ 5892991469d84cb1818cc9b10c09c220.md"
-
-    parser = PostParser()
-    with open(input_filename, 'r', encoding = 'utf-8') as file:
-        parser.parse(file)
-
-        print("title:" + parser.title)
-        print(f"tags: {parser.tags}")
-        print(f"code_snippet: {len(parser.code_snippet_map.keys())}")
-
-        #gist_id = create_secret_gist(input_filename[:len(input_filename)-3], parser.code_snippet_map)
-
-        #print("gist posted")
-
-        final_post = parser.result_post
-        #for key in parser.code_snippet_map.keys():
-        #    url = "<script src='https://gist.github.com/easylive1989/" + gist_id + ".js?file=" + key + "'></script>"
-        #    final_post = final_post.replace(key, url)
-
-        # for image in parser.image_map:
-        #     url = upload_image(input_filename[0:-3], image)
-        #     final_post = final_post.replace(image, "![" + image + "](" + url + ")")
-
-        print("code snippet url replaced")
-
-        create_post(parser.title, final_post, parser.tags)
-
+    if len(sys.argv) < 2:
+        print("用法: python post_a_note_to_medium.py <notion_page_id>")
+        sys.exit(1)
+    
+    notion_page_id = sys.argv[1]
+    
+    try:
+        # 從 Notion 獲取頁面內容
+        notion_data = get_notion_page_content(notion_page_id)
+        
+        print(f"title: {notion_data['title']}")
+        print(f"tags: {notion_data['tags']}")
+        print(f"content preview: {notion_data['content'][:100]}...")
+        
+        # 發佈到 Medium
+        create_post(notion_data['title'], notion_data['content'], notion_data['tags'])
+        
         print("create post successfully")
+        
+    except Exception as e:
+        print(f"錯誤: {e}")
+        sys.exit(1)
 
 
