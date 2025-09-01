@@ -61,6 +61,29 @@ class NotionApi:
             "page": page_response.json(),
             "blocks": blocks_response.json()
         }
+    
+    def get_database(self, database_id: str):
+        """獲取資料庫屬性結構"""
+        return requests.get(
+            f"https://api.notion.com/v1/databases/{database_id}",
+            headers=self.__header()
+        )
+    
+    def get_property_names_by_type(self, database_id: str, property_types: list):
+        """根據屬性類型自動偵測屬性名稱"""
+        response = self.get_database(database_id)
+        if response.status_code != 200:
+            raise Exception(f"無法獲取資料庫 {database_id}: {response.text}")
+        
+        properties = response.json()["properties"]
+        result = {}
+        
+        for prop_name, prop_info in properties.items():
+            prop_type = prop_info['type']
+            if prop_type in property_types:
+                result[prop_type] = prop_name
+        
+        return result
 
     def __header(self) -> dict:
         return {
