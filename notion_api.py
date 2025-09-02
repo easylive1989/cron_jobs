@@ -84,6 +84,18 @@ class NotionApi:
                 result[prop_type] = prop_name
         
         return result
+    
+    def append_block_children(self, block_id: str, children: list):
+        """向頁面或區塊加入子區塊內容"""
+        body = {
+            "children": children
+        }
+        
+        return requests.patch(
+            f"https://api.notion.com/v1/blocks/{block_id}/children",
+            data=json.dumps(body),
+            headers=self.__header()
+        )
 
     def __header(self) -> dict:
         return {

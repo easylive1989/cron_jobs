@@ -183,23 +183,38 @@ page_properties = {
     }
 }
 
-# 如果有 rich_text 屬性，就加入內容
-if 'rich_text' in result_props:
-    page_properties[result_props['rich_text']] = {
-        "rich_text": [
-            {
-                "text": {
-                    "content": mermaid_content
-                }
-            }
-        ]
-    }
-
 # 創建新的 Notion 頁面
 create_response = notion_api.create_page(result_database_id, page_properties)
 
 if create_response.status_code == 200:
-    print(f"成功創建 Notion 頁面: {title}")
+    page_id = create_response.json()['id']
+    print(f"成功創建 Notion 頁面: {title}, ID: {page_id}")
+    
+    # 建立 Mermaid code block 內容
+    mermaid_block = {
+        "object": "block",
+        "type": "code",
+        "code": {
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": mermaid_content
+                    }
+                }
+            ],
+            "language": "mermaid"
+        }
+    }
+    
+    # 將 Mermaid 圖表加入頁面
+    block_response = notion_api.append_block_children(page_id, [mermaid_block])
+    
+    if block_response.status_code == 200:
+        print(f"成功加入 Mermaid 圖表到頁面")
+    else:
+        print(f"加入 Mermaid 圖表失敗: {block_response.status_code}")
+        print(block_response.text)
 else:
     print(f"創建 Notion 頁面失敗: {create_response.status_code}")
     print(create_response.text)
