@@ -19,16 +19,20 @@ else:
     last_month_year = today.year
     last_month = today.month - 1
 
-first_day_of_this_month = datetime.date(last_month_year, last_month, 1)
-month_range = calendar.monthrange(first_day_of_this_month.year, first_day_of_this_month.month)[1]
-last_day_of_this_month = first_day_of_this_month + datetime.timedelta(days=month_range-1)
+first_day_of_last_month = datetime.date(last_month_year, last_month, 1)
+month_range = calendar.monthrange(first_day_of_last_month.year, first_day_of_last_month.month)[1]
+last_day_of_last_month = first_day_of_last_month + datetime.timedelta(days=month_range-1)
+
+# 計算時間區間：起始時間為上個月第一天減一秒，終止時間為上個月最後一天的最後一秒
+start_datetime = datetime.datetime.combine(first_day_of_last_month, datetime.time.min) - datetime.timedelta(seconds=1)
+end_datetime = datetime.datetime.combine(last_day_of_last_month, datetime.time.max)
 
 # 下個月（實際上是這個月）
 next_month_year = today.year
 next_month = today.month
 
-print(first_day_of_this_month)
-print(last_day_of_this_month)
+print(start_datetime)
+print(end_datetime)
 
 # 圓餅圖分析用的查詢（特定分類）
 filter_body_chart = {
@@ -37,13 +41,13 @@ filter_body_chart = {
             {
                 "property": "時間",
                 "date": {
-                    "after": first_day_of_this_month.strftime("%Y-%m-%d")
+                    "after": start_datetime.isoformat()
                 }
             },
             {
                 "property": "時間",
                 "date": {
-                    "before": last_day_of_this_month.strftime("%Y-%m-%d")
+                    "before": end_datetime.isoformat()
                 }
             },
             {
@@ -85,13 +89,13 @@ filter_body_all = {
             {
                 "property": "時間",
                 "date": {
-                    "after": first_day_of_this_month.strftime("%Y-%m-%dT00:00:00.000Z")
+                    "after": start_datetime.isoformat()
                 }
             },
             {
                 "property": "時間",
                 "date": {
-                    "before": last_day_of_this_month.strftime("%Y-%m-%dT23:59:59.999Z")
+                    "before": end_datetime.isoformat()
                 }
             }
         ]
@@ -155,7 +159,7 @@ for result in results_all:
 
 total = entertainment + bill + food + sundries
 
-title = first_day_of_this_month.strftime("%Y%m")
+title = first_day_of_last_month.strftime("%Y%m")
 mermaid_content = f"""%%{{init: {{'theme': 'base', 'themeVariables': {{ 'pie1': '#FF0000', 'pie2': '#FFFF00', 'pie3': '#00FF00', 'pie4': '#0000FF', 'pie5': '#800080', 'pie6': '#ff0000', 'pie7': '#FFA500'}}}}}}%%
 pie showData
         title {title} 分析 - 總額: {-total}
