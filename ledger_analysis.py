@@ -183,41 +183,45 @@ page_properties = {
     }
 }
 
-# 創建新的 Notion 頁面
-create_response = notion_api.create_page(result_database_id, page_properties)
-
-if create_response.status_code == 200:
-    page_id = create_response.json()['id']
-    print(f"成功創建 Notion 頁面: {title}, ID: {page_id}")
-    
-    # 建立 Mermaid code block 內容
-    mermaid_block = {
-        "object": "block",
-        "type": "code",
-        "code": {
-            "rich_text": [
-                {
-                    "type": "text",
-                    "text": {
-                        "content": mermaid_content
-                    }
-                }
-            ],
-            "language": "mermaid"
-        }
-    }
-    
-    # 將 Mermaid 圖表加入頁面
-    block_response = notion_api.append_block_children(page_id, [mermaid_block])
-    
-    if block_response.status_code == 200:
-        print(f"成功加入 Mermaid 圖表到頁面")
-    else:
-        print(f"加入 Mermaid 圖表失敗: {block_response.status_code}")
-        print(block_response.text)
+# 檢查分析結果頁面是否已存在
+if notion_api.check_record_exists(result_database_id, result_props['title'], title):
+    print(f"分析結果頁面 '{title}' 已存在，跳過創建")
 else:
-    print(f"創建 Notion 頁面失敗: {create_response.status_code}")
-    print(create_response.text)
+    # 創建新的 Notion 頁面
+    create_response = notion_api.create_page(result_database_id, page_properties)
+
+    if create_response.status_code == 200:
+        page_id = create_response.json()['id']
+        print(f"成功創建 Notion 頁面: {title}, ID: {page_id}")
+        
+        # 建立 Mermaid code block 內容
+        mermaid_block = {
+            "object": "block",
+            "type": "code",
+            "code": {
+                "rich_text": [
+                    {
+                        "type": "text",
+                        "text": {
+                            "content": mermaid_content
+                        }
+                    }
+                ],
+                "language": "mermaid"
+            }
+        }
+        
+        # 將 Mermaid 圖表加入頁面
+        block_response = notion_api.append_block_children(page_id, [mermaid_block])
+        
+        if block_response.status_code == 200:
+            print(f"成功加入 Mermaid 圖表到頁面")
+        else:
+            print(f"加入 Mermaid 圖表失敗: {block_response.status_code}")
+            print(block_response.text)
+    else:
+        print(f"創建 Notion 頁面失敗: {create_response.status_code}")
+        print(create_response.text)
 
 # 自動偵測帳本資料庫的屬性名稱
 ledger_database_id = '43c59e00321e49a69d85037f0f45ba7e'
@@ -285,21 +289,29 @@ open_properties = {
     }
 }
 
-# 創建關帳記錄
-close_response = notion_api.create_page(ledger_database_id, close_properties)
-if close_response.status_code == 200:
-    print(f"成功創建關帳記錄: {close_title}")
+# 檢查關帳記錄是否已存在
+if notion_api.check_record_exists(ledger_database_id, ledger_props['title'], close_title):
+    print(f"關帳記錄 '{close_title}' 已存在，跳過創建")
 else:
-    print(f"創建關帳記錄失敗: {close_response.status_code}")
-    print(close_response.text)
+    # 創建關帳記錄
+    close_response = notion_api.create_page(ledger_database_id, close_properties)
+    if close_response.status_code == 200:
+        print(f"成功創建關帳記錄: {close_title}")
+    else:
+        print(f"創建關帳記錄失敗: {close_response.status_code}")
+        print(close_response.text)
 
-# 創建開帳記錄
-open_response = notion_api.create_page(ledger_database_id, open_properties)
-if open_response.status_code == 200:
-    print(f"成功創建開帳記錄: {next_month_title}")
+# 檢查開帳記錄是否已存在
+if notion_api.check_record_exists(ledger_database_id, ledger_props['title'], next_month_title):
+    print(f"開帳記錄 '{next_month_title}' 已存在，跳過創建")
 else:
-    print(f"創建開帳記錄失敗: {open_response.status_code}")
-    print(open_response.text)
+    # 創建開帳記錄
+    open_response = notion_api.create_page(ledger_database_id, open_properties)
+    if open_response.status_code == 200:
+        print(f"成功創建開帳記錄: {next_month_title}")
+    else:
+        print(f"創建開帳記錄失敗: {open_response.status_code}")
+        print(open_response.text)
 
 print(f"當月各項總額 - Paul: {total_paul}, Lily: {total_lily}, 現金: {total_cash}, 銀行存款: {total_bank}")
 print(f"關帳金額 - Paul: {-total_paul}, Lily: {-total_lily}, 現金: {-total_cash}, 銀行存款: {-total_bank}")

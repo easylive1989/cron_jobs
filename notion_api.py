@@ -96,6 +96,26 @@ class NotionApi:
             data=json.dumps(body),
             headers=self.__header()
         )
+    
+    def check_record_exists(self, database_id: str, title_property: str, title_value: str):
+        """檢查資料庫中是否已存在指定標題的記錄"""
+        filter_body = {
+            "filter": {
+                "property": title_property,
+                "title": {
+                    "equals": title_value
+                }
+            }
+        }
+        
+        response = self.query_database(database_id, filter_body)
+        if response.status_code == 200:
+            results = response.json()["results"]
+            return len(results) > 0
+        else:
+            print(f"檢查記錄存在失敗: {response.status_code}")
+            print(response.text)
+            return False
 
     def __header(self) -> dict:
         return {
