@@ -92,26 +92,22 @@ setup_environment_variables() {
     print_status "設定環境變數..."
 
     ZSHENV_FILE="$HOME/.zshenv"
-    ZSHENV_CONTENT='export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17
-export PATH="/Users/paulwu/fvm/default/bin:$PATH"
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"'
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    ZSHENV_CONFIG="$SCRIPT_DIR/configs/zshenv"
 
     if [ -f "$ZSHENV_FILE" ] && grep -q "ANDROID_HOME" "$ZSHENV_FILE"; then
         print_skip "環境變數已設定，跳過"
     else
-        print_status "寫入環境變數到 ~/.zshenv..."
-        # 備份現有檔案
-        [ -f "$ZSHENV_FILE" ] && cp "$ZSHENV_FILE" "$ZSHENV_FILE.backup.$(date +%Y%m%d_%H%M%S)"
-        echo "$ZSHENV_CONTENT" > "$ZSHENV_FILE"
-        print_status "環境變數設定完成"
+        if [ -f "$ZSHENV_CONFIG" ]; then
+            print_status "從 configs/zshenv 讀取環境變數設定..."
+            # 備份現有檔案
+            [ -f "$ZSHENV_FILE" ] && cp "$ZSHENV_FILE" "$ZSHENV_FILE.backup.$(date +%Y%m%d_%H%M%S)"
+            cp "$ZSHENV_CONFIG" "$ZSHENV_FILE"
+            print_status "環境變數設定完成"
+        else
+            print_error "找不到設定檔案: $ZSHENV_CONFIG"
+            exit 1
+        fi
     fi
 }
 
@@ -133,83 +129,37 @@ setup_claude_code() {
 
     # 設定 CLAUDE.md
     CLAUDE_MD="$CLAUDE_DIR/CLAUDE.md"
-    CLAUDE_MD_CONTENT='## 開發偏好與工作流程
-
-### 需求釐清
-- 如果需求不清楚或有歧義，必須先提出問題確認
-- 優先確理解正確，避免做錯方向的開發
-
-### 任務分解
-- 偏好小步驟、小改動的開發方式
-- 收到需求後，協助將其拆解為可執行的小任務（tasks）
-- 每個 task 應該要：
-  - 儘可能小且獨立
-  - 有明確的編號（如 Task 1, Task 2...）
-  - 有清楚的目標和範圍
-  - 可以在短時間內完成
-  - 由使用者決定要先執行哪個 task
-  - 一次專注於一個 task，完成後再進行下一個
-
-### 回應格式
-- 除了技術名詞之外，盡量使用繁體中文回覆'
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    CLAUDE_CONFIG="$SCRIPT_DIR/configs/CLAUDE.md"
 
     if [ -f "$CLAUDE_MD" ]; then
         print_skip "CLAUDE.md 已存在，跳過"
     else
-        print_status "創建 CLAUDE.md..."
-        echo "$CLAUDE_MD_CONTENT" > "$CLAUDE_MD"
-        print_status "CLAUDE.md 設定完成"
+        if [ -f "$CLAUDE_CONFIG" ]; then
+            print_status "從 configs/CLAUDE.md 複製設定..."
+            cp "$CLAUDE_CONFIG" "$CLAUDE_MD"
+            print_status "CLAUDE.md 設定完成"
+        else
+            print_error "找不到設定檔案: $CLAUDE_CONFIG"
+            exit 1
+        fi
     fi
 
     # 設定 settings.json
     SETTINGS_JSON="$CLAUDE_DIR/settings.json"
-    SETTINGS_JSON_CONTENT='{
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "open '\''raycast://extensions/raycast/raycast/confetti'\''"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "open '\''raycast://extensions/raycast/raycast/confetti'\''"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "open '\''raycast://extensions/raycast/raycast/confetti'\''"
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "printf \"$(git -C \"$(cat | jq -r '\''.workspace.current_dir'\'')\" rev-parse --abbrev-ref HEAD 2>/dev/null || echo '\''no git'\'')\""
-  },
-  "model": "sonnet"
-}'
+    SETTINGS_CONFIG="$SCRIPT_DIR/configs/settings.json"
 
     if [ -f "$SETTINGS_JSON" ]; then
         print_skip "settings.json 已存在，跳過"
     else
-        print_status "創建 settings.json..."
-        echo "$SETTINGS_JSON_CONTENT" > "$SETTINGS_JSON"
-        print_status "settings.json 設定完成"
+        if [ -f "$SETTINGS_CONFIG" ]; then
+            print_status "從 configs/settings.json 複製設定..."
+            cp "$SETTINGS_CONFIG" "$SETTINGS_JSON"
+            print_status "settings.json 設定完成"
+        else
+            print_error "找不到設定檔案: $SETTINGS_CONFIG"
+            exit 1
+        fi
     fi
 }
 
@@ -259,101 +209,39 @@ setup_vim() {
 
     # 設定 IdeaVim
     IDEAVIMRC="$HOME/.ideavimrc"
-    IDEAVIMRC_CONTENT='source ~/Dropbox/ideavimrc
-nmap zso :source /Users/paulwu/.ideavimrc<CR>'
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    IDEAVIMRC_CONFIG="$SCRIPT_DIR/configs/ideavimrc"
 
     if [ -f "$IDEAVIMRC" ]; then
         print_skip ".ideavimrc 已存在，跳過"
     else
-        print_status "創建 .ideavimrc..."
-        echo "$IDEAVIMRC_CONTENT" > "$IDEAVIMRC"
-        print_status ".ideavimrc 設定完成"
+        if [ -f "$IDEAVIMRC_CONFIG" ]; then
+            print_status "從 configs/ideavimrc 複製設定..."
+            cp "$IDEAVIMRC_CONFIG" "$IDEAVIMRC"
+            print_status ".ideavimrc 設定完成"
+        else
+            print_error "找不到設定檔案: $IDEAVIMRC_CONFIG"
+            exit 1
+        fi
     fi
 
     # 設定 NeoVim
     NVIM_CONFIG_DIR="$HOME/.config/nvim"
     NVIM_INIT="$NVIM_CONFIG_DIR/init.lua"
-    NVIM_INIT_CONTENT="vim.keymap.set('n', 'll', '\\$', { noremap = true })
-vim.keymap.set('n', 'hh', '^', { noremap = true })
-vim.keymap.set('n', 'z;', '\\$a;', { noremap = true })
-vim.keymap.set('n', 'z,', '\\$a,', { noremap = true })
-vim.keymap.set('n', 'zw', 'vf(%', { noremap = true })
-vim.keymap.set('n', 'zq', 'vf{%', { noremap = true })
-
-if vim.g.vscode then
-    local fold = {
-        fold = function()
-            vim.fn.VSCodeNotify(\"editor.fold\")
-        end,
-        unfold = function()
-            vim.fn.VSCodeNotify(\"editor.unfold\")
-        end,
-    }
-
-    local refactor = {
-        rename = function()
-            vim.fn.VSCodeNotify(\"editor.action.rename\")
-        end,
-    }
-
-    local close = {
-        all = function()
-            vim.fn.VSCodeNotify(\"workbench.action.closeAllEditors\")
-        end,
-        current = function()
-            vim.fn.VSCodeNotify(\"workbench.action.closeActiveEditor\")
-        end,
-    }
-
-    local dart = {
-        run = function()
-            vim.fn.VSCodeNotify(\"workbench.action.debug.run\")
-        end,
-        test = function()
-            vim.fn.VSCodeNotify(\"testing.runAll\")
-        end,
-        build = function()
-            vim.fn.VSCodeNotify(\"workbench.action.tasks.runTask\", \"build:runner\")
-        end,
-        buildClean = function()
-            vim.fn.VSCodeNotify(\"workbench.action.tasks.runTask\", \"build:runner:clean\")
-        end,
-    }
-
-    local nav = {
-        definition = function()
-            vim.fn.VSCodeNotify(\"editor.action.revealDefinition\")
-        end,
-        back = function()
-            vim.fn.VSCodeNotify(\"workbench.action.navigateBack\")
-        end,
-    }
-
-    vim.keymap.set('n', 'ze', fold.unfold)
-    vim.keymap.set('n', 'zc', fold.fold)
-
-    vim.keymap.set('n', 'qa', close.all)
-    vim.keymap.set('n', 'qq', close.current)
-
-    vim.keymap.set('n', 'zrr', refactor.rename)
-    vim.keymap.set('n', 'zra', dart.run)
-    vim.keymap.set('n', 'zrt', dart.test)
-    vim.keymap.set('n', 'zrb', dart.build)
-    vim.keymap.set('n', 'zrbb', dart.buildClean)
-
-    vim.keymap.set('n', 'zf', nav.definition)
-    vim.keymap.set('n', 'zk', nav.back)
-else
-    -- ordinary Neovim
-end"
+    NVIM_CONFIG="$SCRIPT_DIR/configs/init.lua"
 
     if [ -f "$NVIM_INIT" ]; then
         print_skip "NeoVim init.lua 已存在，跳過"
     else
-        print_status "創建 NeoVim 設定..."
-        mkdir -p "$NVIM_CONFIG_DIR"
-        echo "$NVIM_INIT_CONTENT" > "$NVIM_INIT"
-        print_status "NeoVim init.lua 設定完成"
+        if [ -f "$NVIM_CONFIG" ]; then
+            print_status "從 configs/init.lua 複製 NeoVim 設定..."
+            mkdir -p "$NVIM_CONFIG_DIR"
+            cp "$NVIM_CONFIG" "$NVIM_INIT"
+            print_status "NeoVim init.lua 設定完成"
+        else
+            print_error "找不到設定檔案: $NVIM_CONFIG"
+            exit 1
+        fi
     fi
 }
 
