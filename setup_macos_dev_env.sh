@@ -129,36 +129,53 @@ setup_claude_code() {
 
     # 設定 CLAUDE.md
     CLAUDE_MD="$CLAUDE_DIR/CLAUDE.md"
-    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    CLAUDE_CONFIG="$SCRIPT_DIR/configs/CLAUDE.md"
+    DROPBOX_CLAUDE_MD="$HOME/Dropbox/claude/CLAUDE.md"
 
-    if [ -f "$CLAUDE_MD" ]; then
+    if [ -f "$CLAUDE_MD" ] || [ -L "$CLAUDE_MD" ]; then
         print_skip "CLAUDE.md 已存在，跳過"
     else
-        if [ -f "$CLAUDE_CONFIG" ]; then
-            print_status "從 configs/CLAUDE.md 複製設定..."
-            cp "$CLAUDE_CONFIG" "$CLAUDE_MD"
-            print_status "CLAUDE.md 設定完成"
+        if [ -f "$DROPBOX_CLAUDE_MD" ]; then
+            print_status "建立 CLAUDE.md 符號連結到 Dropbox..."
+            ln -s "$DROPBOX_CLAUDE_MD" "$CLAUDE_MD"
+            print_status "CLAUDE.md 符號連結設定完成"
         else
-            print_error "找不到設定檔案: $CLAUDE_CONFIG"
-            exit 1
+            # 備用方案：從 configs 目錄複製
+            SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+            CLAUDE_CONFIG="$SCRIPT_DIR/configs/CLAUDE.md"
+            if [ -f "$CLAUDE_CONFIG" ]; then
+                print_status "從 configs/CLAUDE.md 複製設定..."
+                cp "$CLAUDE_CONFIG" "$CLAUDE_MD"
+                print_status "CLAUDE.md 設定完成"
+            else
+                print_error "找不到 Dropbox 或 configs 中的 CLAUDE.md"
+                exit 1
+            fi
         fi
     fi
 
     # 設定 settings.json
     SETTINGS_JSON="$CLAUDE_DIR/settings.json"
-    SETTINGS_CONFIG="$SCRIPT_DIR/configs/settings.json"
+    DROPBOX_SETTINGS_JSON="$HOME/Dropbox/claude/settings.json"
 
-    if [ -f "$SETTINGS_JSON" ]; then
+    if [ -f "$SETTINGS_JSON" ] || [ -L "$SETTINGS_JSON" ]; then
         print_skip "settings.json 已存在，跳過"
     else
-        if [ -f "$SETTINGS_CONFIG" ]; then
-            print_status "從 configs/settings.json 複製設定..."
-            cp "$SETTINGS_CONFIG" "$SETTINGS_JSON"
-            print_status "settings.json 設定完成"
+        if [ -f "$DROPBOX_SETTINGS_JSON" ]; then
+            print_status "建立 settings.json 符號連結到 Dropbox..."
+            ln -s "$DROPBOX_SETTINGS_JSON" "$SETTINGS_JSON"
+            print_status "settings.json 符號連結設定完成"
         else
-            print_error "找不到設定檔案: $SETTINGS_CONFIG"
-            exit 1
+            # 備用方案：從 configs 目錄複製
+            SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+            SETTINGS_CONFIG="$SCRIPT_DIR/configs/settings.json"
+            if [ -f "$SETTINGS_CONFIG" ]; then
+                print_status "從 configs/settings.json 複製設定..."
+                cp "$SETTINGS_CONFIG" "$SETTINGS_JSON"
+                print_status "settings.json 設定完成"
+            else
+                print_error "找不到 Dropbox 或 configs 中的 settings.json"
+                exit 1
+            fi
         fi
     fi
 }
