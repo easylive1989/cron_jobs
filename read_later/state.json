@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.threads.com/share/BAPb0rKKsH/",
+      "message_id": "1532403790194413651",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1532403790194413651",
+      "shared_at": "2026-07-30T15:05:34.268000+00:00",
+      "title": "https://www.threads.com/share/BAPb0rKKsH/",
+      "url": "https://www.threads.com/share/BAPb0rKKsH/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/_kKFQY39h/",
       "message_id": "1532258625257472060",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1532258625257472060",
@@ -1889,18 +1898,9 @@
       "shared_at": "2026-06-11T10:05:49.603000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@lky_exercise/post/DZaEcmhFDGO?xmt=AQG01juN571fVxn-qSNR2vddGz-R1cstGRBryw7CG-T6Zbx1E3pz3VE06nOhJQ53WdrFYyL4&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://www.threads.com/@leadion_ai/post/DZZ6bCqE38_?xmt=AQG03rEv_J9c6tKfxyaWTuIWsJzE8bH5qIvvdy-vD9hXAeOswi4HyvS6WdwxefA41OkDzlMO&slof=1",
-      "message_id": "1514571183121502248",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514571183121502248",
-      "shared_at": "2026-06-11T10:05:09.428000+00:00",
-      "title": "Threads",
-      "url": "https://www.threads.com/@leadion_ai/post/DZZ6bCqE38_?xmt=AQG03rEv_J9c6tKfxyaWTuIWsJzE8bH5qIvvdy-vD9hXAeOswi4HyvS6WdwxefA41OkDzlMO&slof=1"
     }
   ],
-  "last_message_id": "1532258625257472060",
+  "last_message_id": "1532403790194413651",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -2191,6 +2191,7 @@
     "https://www.threads.com/@yuqi._.0313/post/DbIyJ6nE7tf?xmt=AQG0yuZTu7eXdWQz1oojYmsZfKls8n6-7h4ESxEzj_mRBF9zkvx8jH6mmrHFmVGz1YaI1Gke&slof=1",
     "https://www.threads.com/@yuri.learns/post/DaGE2U0CbmW?xmt=AQG0rvc1tPYLQMwDQZvEHyH51nqhTbzMdD7sMkGi3-erl1wPKhenX3iyo3Af44_5tXgFCejC&slof=1",
     "https://www.threads.com/@yushengli1105/post/DYcZJGLmrT5?xmt=AQG0goVmiO8-gGZfoZr-SDO2y0Kp_RpbnIFH252Y4nUR2c-4psneQ80YyOdaaa0nYEr-FytK&slof=1",
+    "https://www.threads.com/share/BAPb0rKKsH/",
     "https://www.threads.com/share/BAUVgtCgmC/",
     "https://www.threads.com/share/_kKFQY39h/",
     "https://www.youtube.com/watch?v=IlqJqcl8ONE",
