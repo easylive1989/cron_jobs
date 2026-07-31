@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.threads.com/share/_dZJHLjnk/",
+      "message_id": "1532750432689061988",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1532750432689061988",
+      "shared_at": "2026-07-31T14:03:00.279000+00:00",
+      "title": "https://www.threads.com/share/_dZJHLjnk/",
+      "url": "https://www.threads.com/share/_dZJHLjnk/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/BAPb0rKKsH/",
       "message_id": "1532403790194413651",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1532403790194413651",
@@ -1889,18 +1898,9 @@
       "shared_at": "2026-06-11T11:29:27.354000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@shane412335/post/DZb8m06E3no?xmt=AQG0Ck_KQehYOGMNLNdpTkdUThdYcozY874m4nPl89hhp20iK3ns11bmtRGQ8g0L7nF9l9VE&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://www.threads.com/@lky_exercise/post/DZaEcmhFDGO?xmt=AQG01juN571fVxn-qSNR2vddGz-R1cstGRBryw7CG-T6Zbx1E3pz3VE06nOhJQ53WdrFYyL4&slof=1",
-      "message_id": "1514571351627661422",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514571351627661422",
-      "shared_at": "2026-06-11T10:05:49.603000+00:00",
-      "title": "Threads",
-      "url": "https://www.threads.com/@lky_exercise/post/DZaEcmhFDGO?xmt=AQG01juN571fVxn-qSNR2vddGz-R1cstGRBryw7CG-T6Zbx1E3pz3VE06nOhJQ53WdrFYyL4&slof=1"
     }
   ],
-  "last_message_id": "1532403790194413651",
+  "last_message_id": "1532750432689061988",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -2193,6 +2193,7 @@
     "https://www.threads.com/@yushengli1105/post/DYcZJGLmrT5?xmt=AQG0goVmiO8-gGZfoZr-SDO2y0Kp_RpbnIFH252Y4nUR2c-4psneQ80YyOdaaa0nYEr-FytK&slof=1",
     "https://www.threads.com/share/BAPb0rKKsH/",
     "https://www.threads.com/share/BAUVgtCgmC/",
+    "https://www.threads.com/share/_dZJHLjnk/",
     "https://www.threads.com/share/_kKFQY39h/",
     "https://www.youtube.com/watch?v=IlqJqcl8ONE",
     "https://www.youtube.com/watch?v=gdrPkpXuNks",
