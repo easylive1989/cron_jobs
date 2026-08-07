@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.instagram.com/reel/DZzadPKSxbC/",
+      "message_id": "1535205629017333770",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1535205629017333770",
+      "shared_at": "2026-08-07T08:39:04.699000+00:00",
+      "title": "https://www.instagram.com/reel/DZzadPKSxbC/",
+      "url": "https://www.instagram.com/reel/DZzadPKSxbC/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/BAWW-5YkIy/",
       "message_id": "1534011047974015067",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1534011047974015067",
@@ -1889,18 +1898,9 @@
       "shared_at": "2026-06-11T11:41:41.487000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@master_aiaiai/post/DZbIA1ODlVS?xmt=AQG0lixWKp2l5o04rwVEXlpbrElTMt2IKrShFPFu8A2rR7DsAOMRlBDkRfARBsy1jy_Vwsg&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://www.threads.com/@ahdaa/post/DZcSKXyE-F7?xmt=AQG0w3i7Muuoniri2txH22rzCX6CbPMYc_Nc6KAAvejJkYzHGmuGd1HP2ErhNk6sUtt_oAnS&slof=1",
-      "message_id": "1514593486257651764",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514593486257651764",
-      "shared_at": "2026-06-11T11:33:46.910000+00:00",
-      "title": "Threads",
-      "url": "https://www.threads.com/@ahdaa/post/DZcSKXyE-F7?xmt=AQG0w3i7Muuoniri2txH22rzCX6CbPMYc_Nc6KAAvejJkYzHGmuGd1HP2ErhNk6sUtt_oAnS&slof=1"
     }
   ],
-  "last_message_id": "1534011047974015067",
+  "last_message_id": "1535205629017333770",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -1936,6 +1936,7 @@
     "https://www.instagram.com/p/DaP7SGPzmCR/",
     "https://www.instagram.com/p/DaXzUpbgd0i/",
     "https://www.instagram.com/reel/DYzycrQT7am/",
+    "https://www.instagram.com/reel/DZzadPKSxbC/",
     "https://www.threads.com/@0x0funky/post/DXiNaLZAQ6b?xmt=AQG0EBdd_ubCesXtzcfIGSN_mEgRkkEcgM3coCjW04cg0LFrB5Ic_dddoRkk0t6BGTC_njXF&slof=1",
     "https://www.threads.com/@0xspeter/post/DaMXmzGk13L?xmt=AQG0PI0fFrEmJLNWcMPzICwik_KA0gIekI4NOkt6guL7-VUE6GTDZbuUlQ5ldcwEsDHoyCDq&slof=1",
     "https://www.threads.com/@30plus.project/post/DYHS3YrkRts?xmt=AQG0MXo8mOGvMf2uk52fxKqxho15m5WSuQuU7R53atWdiW-IMTsa1vzuQ9C_VNeBejZLXyCf&slof=1",
