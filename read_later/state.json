@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.threads.com/share/BAUhehO4Tw/",
+      "message_id": "1537766615226261535",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1537766615226261535",
+      "shared_at": "2026-08-14T10:15:31.392000+00:00",
+      "title": "https://www.threads.com/share/BAUhehO4Tw/",
+      "url": "https://www.threads.com/share/BAUhehO4Tw/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/BAyoyDWD_Q/",
       "message_id": "1536228302904234075",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1536228302904234075",
@@ -1884,23 +1893,9 @@
       "shared_at": "2026-06-11T16:01:52.497000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@aiposthub/post/DZckBkaETbr?xmt=AQG0oKDQqFHy1x1MxPppWi2KoPcBzQs0TaXk2QkKoGcOTN31a3MiwjZwE7KlzzGpFNU5nMs&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://spark-path-418.notion.site/AI-2026-37b31f65c48880c6b2b1fa851bf85b1b",
-      "message_id": "1514651509864792125",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514651509864792125",
-      "og_description": "A collaborative AI workspace, built on your company context. Build and orchestrate agents right alongside your team",
-      "og_image": "https://app.notion.com/images/meta/default.png",
-      "og_site_name": "Notion",
-      "og_type": "website",
-      "og_url": "https://app.notion.com",
-      "shared_at": "2026-06-11T15:24:20.816000+00:00",
-      "title": "Notion | Where teams and agents work together",
-      "url": "https://spark-path-418.notion.site/AI-2026-37b31f65c48880c6b2b1fa851bf85b1b"
     }
   ],
-  "last_message_id": "1536228302904234075",
+  "last_message_id": "1537766615226261535",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -2194,6 +2189,7 @@
     "https://www.threads.com/@yushengli1105/post/DYcZJGLmrT5?xmt=AQG0goVmiO8-gGZfoZr-SDO2y0Kp_RpbnIFH252Y4nUR2c-4psneQ80YyOdaaa0nYEr-FytK&slof=1",
     "https://www.threads.com/share/BAPb0rKKsH/",
     "https://www.threads.com/share/BAUVgtCgmC/",
+    "https://www.threads.com/share/BAUhehO4Tw/",
     "https://www.threads.com/share/BAWW-5YkIy/",
     "https://www.threads.com/share/BAyoyDWD_Q/",
     "https://www.threads.com/share/_dZJHLjnk/",
