@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.threads.com/share/BAYeOZW5KZ/",
+      "message_id": "1538035148560539801",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1538035148560539801",
+      "shared_at": "2026-08-15T04:02:34.728000+00:00",
+      "title": "https://www.threads.com/share/BAYeOZW5KZ/",
+      "url": "https://www.threads.com/share/BAYeOZW5KZ/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/BAUhehO4Tw/",
       "message_id": "1537766615226261535",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1537766615226261535",
@@ -1884,18 +1893,9 @@
       "shared_at": "2026-06-11T16:10:47.521000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@hsin_111/post/DZcBAlrGbRr?xmt=AQG0unhRC2kWvyt3zCt70YRgT8rxSKCFVujw8jE3cvAan1pK3JfY9zcA_CuDzlYOkPY5iLA&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://www.threads.com/@aiposthub/post/DZckBkaETbr?xmt=AQG0oKDQqFHy1x1MxPppWi2KoPcBzQs0TaXk2QkKoGcOTN31a3MiwjZwE7KlzzGpFNU5nMs&slof=1",
-      "message_id": "1514660954099421215",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514660954099421215",
-      "shared_at": "2026-06-11T16:01:52.497000+00:00",
-      "title": "Threads",
-      "url": "https://www.threads.com/@aiposthub/post/DZckBkaETbr?xmt=AQG0oKDQqFHy1x1MxPppWi2KoPcBzQs0TaXk2QkKoGcOTN31a3MiwjZwE7KlzzGpFNU5nMs&slof=1"
     }
   ],
-  "last_message_id": "1537766615226261535",
+  "last_message_id": "1538035148560539801",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -2191,6 +2191,7 @@
     "https://www.threads.com/share/BAUVgtCgmC/",
     "https://www.threads.com/share/BAUhehO4Tw/",
     "https://www.threads.com/share/BAWW-5YkIy/",
+    "https://www.threads.com/share/BAYeOZW5KZ/",
     "https://www.threads.com/share/BAyoyDWD_Q/",
     "https://www.threads.com/share/_dZJHLjnk/",
     "https://www.threads.com/share/_kKFQY39h/",
