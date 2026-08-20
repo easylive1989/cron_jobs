@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.facebook.com/share/p/1BGtDa6GTi/?mibextid=wwXIfr",
+      "message_id": "1539905411791196221",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1539905411791196221",
+      "shared_at": "2026-08-20T07:54:20.230000+00:00",
+      "title": "https://www.facebook.com/share/p/1BGtDa6GTi/?mibextid=wwXIfr",
+      "url": "https://www.facebook.com/share/p/1BGtDa6GTi/?mibextid=wwXIfr"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.threads.com/share/BAWlJxtO4z/",
       "message_id": "1539623174784684062",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1539623174784684062",
@@ -1884,18 +1893,9 @@
       "shared_at": "2026-06-11T23:19:33.831000+00:00",
       "title": "Threads",
       "url": "https://www.threads.com/@largitdata/post/DZchY9tClax?xmt=AQG0u8PB5-3OoHmfmtyk9OVvM4lPhdC_Bmi-Kx5PdI1ZLaF8zAo-0ioOloBzWo5SNyvuDdY&slof=1"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://www.threads.com/@wgi327119/post/DZc2gTUlHu4?xmt=AQG0S-b57wLMjOpjvajsFQKpsavzyczkDh5QjRVRF732JSe8unsYiD2x8AgLLchu-sQJJBc&slof=1",
-      "message_id": "1514770218210169012",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514770218210169012",
-      "shared_at": "2026-06-11T23:16:03.091000+00:00",
-      "title": "Threads",
-      "url": "https://www.threads.com/@wgi327119/post/DZc2gTUlHu4?xmt=AQG0S-b57wLMjOpjvajsFQKpsavzyczkDh5QjRVRF732JSe8unsYiD2x8AgLLchu-sQJJBc&slof=1"
     }
   ],
-  "last_message_id": "1539623174784684062",
+  "last_message_id": "1539905411791196221",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -1920,6 +1920,7 @@
     "https://www.facebook.com/share/1BXW9nGMCc/?mibextid=wwXIfr",
     "https://www.facebook.com/share/1bCghuGLTh/?mibextid=wwXIfr",
     "https://www.facebook.com/share/p/18rpZemkt1/?mibextid=wwXIfr",
+    "https://www.facebook.com/share/p/1BGtDa6GTi/?mibextid=wwXIfr",
     "https://www.facebook.com/share/p/1BXAugkQFF/?mibextid=wwXIfr",
     "https://www.facebook.com/share/r/1HCdNe9Zb7/?mibextid=wwXIfr",
     "https://www.facebook.com/share/r/1PUbY9WPNf/?mibextid=wwXIfr",
