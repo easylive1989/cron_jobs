@@ -6,7 +6,62 @@
 <atom:link href="https://tools.paul-learning.dev/read_later/feed.xml" rel="self" type="application/rss+xml" />
 <description>URLs shared in Discord, ready for your RSS reader.</description>
 <language>zh-tw</language>
-<lastBuildDate>Sun, 23 Aug 2026 02:51:39 +0000</lastBuildDate>
+<lastBuildDate>Sun, 23 Aug 2026 04:23:54 +0000</lastBuildDate>
+<item>
+<title>x.com 分享連結</title>
+<link>https://x.com/hanakoxbt/status/2091148417426718807?s=12</link>
+<guid isPermaLink="true">https://x.com/hanakoxbt/status/2091148417426718807?s=12</guid>
+<pubDate>Sun, 23 Aug 2026 04:19:39 +0000</pubDate>
+<description><![CDATA[<html><body><h1>Post by @hanakoxbt</h1>
+<p>Author: Hanako @hanakoxbt
+Posted: Sat, 22 Aug 2026 13:00:09 GMT
+URL: <a href="https://x.com/hanakoxbt/status/2091148417426718807">https://x.com/hanakoxbt/status/2091148417426718807</a>
+Likes: 377 | Retweets: 53</p>
+<h2>Post</h2>
+<p>Google Brain founder, Andrew Ng:</p>
+<p>"Prompting will be dead in 6 months. Loops and graphs are replacing it."</p>
+<p>in 100 minutes at Stanford he shows how to build agents that finish the work and sharpen themselves</p>
+<p>LLMs → Agents → Loops → Graphs</p>
+<p>the first 15 minutes go past where most $500 AI courses stop</p>
+<p>most people are still learning prompts while the leverage moved two layers up</p>
+<p>same model, same tokens, and the only thing that changes is the shape you run it in</p>
+<p>watch the lecture today, then save the full graph engineering guide below</p>
+<h2>Thread</h2>
+<h3>1. Thread Post</h3>
+<p>Author: @hanakoxbt
+Posted: Tue, 11 Aug 2026 13:23:05 GMT
+URL: <a href="https://x.com/hanakoxbt/status/2087167924410658912">https://x.com/hanakoxbt/status/2087167924410658912</a></p>
+<blockquote>
+<p><a href="https://x.com/i/article/2087161603955326977">https://x.com/i/article/2087161603955326977</a></p>
+</blockquote>
+<p>Likes: 381 | Retweets: 61</p>
+<h2>Top Comments</h2>
+<h3>1. @SamHeadache</h3>
+<p>Author: deport my wife
+Posted: Sun, 23 Aug 2026 03:51:40 GMT
+URL: <a href="https://x.com/SamHeadache/status/2091372776213061848">https://x.com/SamHeadache/status/2091372776213061848</a></p>
+<blockquote>
+<p>this mindset is what designed and built battery lawnmowers. they do everything anyone could think of but cut grass well.</p>
+</blockquote>
+<p>Likes: 1</p>
+<h3>2. @John_zhong324</h3>
+<p>Author: John Zhong | AI Growth Systems
+Posted: Sun, 23 Aug 2026 02:04:16 GMT
+URL: <a href="https://x.com/John_zhong324/status/2091345746968879350">https://x.com/John_zhong324/status/2091345746968879350</a></p>
+<blockquote>
+<p>Prompts are becoming components rather than the whole product. The durable advantage is in state, routing, tools, evaluation, and recovery loops. A good graph turns model intelligence into a repeatable operating system.</p>
+</blockquote>
+<p>Likes: 0</p>
+<h3>3. @0xSlyth</h3>
+<p>Author: 0xSlyth
+Posted: Sat, 22 Aug 2026 16:15:04 GMT
+URL: <a href="https://x.com/0xSlyth/status/2091197471884263865">https://x.com/0xSlyth/status/2091197471884263865</a></p>
+<blockquote>
+<p>thanks for sharin this</p>
+</blockquote>
+<p>Likes: 0</p>
+</body></html>]]></description>
+</item>
 <item>
 <title>facebook.com 分享連結</title>
 <link>https://www.facebook.com/share/p/1BGtDa6GTi/?mibextid=wwXIfr</link>
@@ -24337,13 +24392,6 @@ URL: <a href="https://x.com/InvestLikeBest/status/2054534694134579427">https://x
 <link>https://www.threads.com/@js020305378/post/DZcxNZoEpUz?xmt=AQG0KF1a_7wFGa4THGKh_3g7K5YIeY-CgDe-c3fnTTvSp38IbycbZVB3QmIUb7HQcjbLyUQ&amp;slof=1</link>
 <guid isPermaLink="true">https://www.threads.com/@js020305378/post/DZcxNZoEpUz?xmt=AQG0KF1a_7wFGa4THGKh_3g7K5YIeY-CgDe-c3fnTTvSp38IbycbZVB3QmIUb7HQcjbLyUQ&amp;slof=1</guid>
 <pubDate>Thu, 11 Jun 2026 23:21:03 +0000</pubDate>
-<description><![CDATA[]]></description>
-</item>
-<item>
-<title>Threads</title>
-<link>https://www.threads.com/@largitdata/post/DZchY9tClax?xmt=AQG0u8PB5-3OoHmfmtyk9OVvM4lPhdC_Bmi-Kx5PdI1ZLaF8zAo-0ioOloBzWo5SNyvuDdY&amp;slof=1</link>
-<guid isPermaLink="true">https://www.threads.com/@largitdata/post/DZchY9tClax?xmt=AQG0u8PB5-3OoHmfmtyk9OVvM4lPhdC_Bmi-Kx5PdI1ZLaF8zAo-0ioOloBzWo5SNyvuDdY&amp;slof=1</guid>
-<pubDate>Thu, 11 Jun 2026 23:19:33 +0000</pubDate>
 <description><![CDATA[]]></description>
 </item>
 </channel>
