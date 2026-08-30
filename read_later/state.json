@@ -2,6 +2,15 @@
   "items": [
     {
       "author": "Paul CH",
+      "message_excerpt": "https://www.threads.com/share/BASIW9xG2H/",
+      "message_id": "1543524194522890312",
+      "message_link": "https://discord.com/channels/@me/1501760423442251896/1543524194522890312",
+      "shared_at": "2026-08-30T07:34:05.267000+00:00",
+      "title": "https://www.threads.com/share/BASIW9xG2H/",
+      "url": "https://www.threads.com/share/BASIW9xG2H/"
+    },
+    {
+      "author": "Paul CH",
       "message_excerpt": "https://www.instagram.com/reel/DciYiliSWG5/",
       "message_id": "1543119520896647179",
       "message_link": "https://discord.com/channels/@me/1501760423442251896/1543119520896647179",
@@ -1873,18 +1882,9 @@
       "shared_at": "2026-06-12T00:48:32.783000+00:00",
       "title": "https://x.com/MaxBrodeurUrbas/status/2059736090937081980",
       "url": "https://x.com/MaxBrodeurUrbas/status/2059736090937081980"
-    },
-    {
-      "author": "Paul CH",
-      "message_excerpt": "https://x.com/thorstenball/article/2059304318055150066",
-      "message_id": "1514792938461335632",
-      "message_link": "https://discord.com/channels/@me/1501760423442251896/1514792938461335632",
-      "shared_at": "2026-06-12T00:46:20.021000+00:00",
-      "title": "https://x.com/thorstenball/article/2059304318055150066",
-      "url": "https://x.com/thorstenball/article/2059304318055150066"
     }
   ],
-  "last_message_id": "1543119520896647179",
+  "last_message_id": "1543524194522890312",
   "seen_urls": [
     "https://cpojer.net/posts/modern-engineering-values",
     "https://github.com/ParthJadhav/app-store-screenshots",
@@ -2181,6 +2181,7 @@
     "https://www.threads.com/share/BALKTppscA/",
     "https://www.threads.com/share/BAOqU_xM9V/",
     "https://www.threads.com/share/BAPb0rKKsH/",
+    "https://www.threads.com/share/BASIW9xG2H/",
     "https://www.threads.com/share/BAUVgtCgmC/",
     "https://www.threads.com/share/BAUhehO4Tw/",
     "https://www.threads.com/share/BAVaLHjysr/",

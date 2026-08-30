@@ -6,7 +6,14 @@
 <atom:link href="https://tools.paul-learning.dev/read_later/feed.xml" rel="self" type="application/rss+xml" />
 <description>URLs shared in Discord, ready for your RSS reader.</description>
 <language>zh-tw</language>
-<lastBuildDate>Sun, 30 Aug 2026 07:32:55 +0000</lastBuildDate>
+<lastBuildDate>Sun, 30 Aug 2026 13:20:44 +0000</lastBuildDate>
+<item>
+<title>threads.com 分享連結</title>
+<link>https://www.threads.com/share/BASIW9xG2H/</link>
+<guid isPermaLink="true">https://www.threads.com/share/BASIW9xG2H/</guid>
+<pubDate>Sun, 30 Aug 2026 07:34:05 +0000</pubDate>
+<description><![CDATA[]]></description>
+</item>
 <item>
 <title>instagram.com 分享連結</title>
 <link>https://www.instagram.com/reel/DciYiliSWG5/</link>
@@ -24226,13 +24233,6 @@ URL: <a href="https://x.com/emtalas/status/2059966827862577292">https://x.com/em
 </blockquote>
 <p>Likes: 1</p>
 </body></html>]]></description>
-</item>
-<item>
-<title>x.com 分享連結</title>
-<link>https://x.com/thorstenball/article/2059304318055150066</link>
-<guid isPermaLink="true">https://x.com/thorstenball/article/2059304318055150066</guid>
-<pubDate>Fri, 12 Jun 2026 00:46:20 +0000</pubDate>
-<description><![CDATA[]]></description>
 </item>
 </channel>
 </rss>
