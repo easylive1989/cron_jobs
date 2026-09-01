@@ -43,5 +43,8 @@ cron.log
 # Git worktrees
 .worktrees/
 
+# Independent repositories
+publixia/
+
 # Brainstorming visual companion temp files
 .superpowers/
